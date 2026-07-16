@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nine Men's Morris</title>
+    <meta
+      name="description"
+      content="Nine men's morris against five grades of engine, from one that misses your mills to one that cannot lose."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="rig">
+      <header class="masthead">
+        <h1>Nine Men's Morris</h1>
+        <p class="sub">Close a line of three. Take a man. Leave them two.</p>
+      </header>
+
+      <main class="stage">
+        <div class="board-well">
+          <div id="board-mount"></div>
+        </div>
+
+        <aside class="rail">
+          <section class="scores">
+            <div class="score" data-side="you">
+              <div class="score-head">
+                <span class="who">You</span>
+                <span class="tally" id="tally-you">9</span>
+              </div>
+              <div class="pips" id="pips-you"></div>
+              <div class="score-note" id="note-you">nine in hand</div>
+            </div>
+
+            <div class="score" data-side="cpu">
+              <div class="score-head">
+                <span class="who">Engine <b class="tier-name" id="tier-name">Club</b></span>
+                <span class="tally" id="tally-cpu">9</span>
+              </div>
+              <div class="pips" id="pips-cpu"></div>
+              <div class="score-note" id="note-cpu">nine in hand</div>
+            </div>
+          </section>
+
+          <p class="status" id="status" role="status" aria-live="polite">
+            Place a man on any point.
+          </p>
+
+          <section class="controls">
+            <label class="field">
+              <span class="field-label">Difficulty</span>
+              <select id="tier" class="select"></select>
+            </label>
+            <p class="blurb" id="blurb"></p>
+
+            <label class="toggle">
+              <input type="checkbox" id="hints" checked />
+              <span class="toggle-box" aria-hidden="true"></span>
+              <span class="toggle-text">
+                Show open circuits
+                <em>Lines one man short of closing, yours and theirs</em>
+              </span>
+            </label>
+
+            <div class="actions">
+              <button class="btn" id="new-game" type="button">
+                <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                New game
+              </button>
+              <button class="btn" id="review" type="button" hidden>
+                <svg viewBox="0 0 24 24" class="icon" aria-hidden="true">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                  <rect x="9" y="1" width="6" height="4" rx="1" />
+                  <path d="M8 12h8M8 16h5" />
+                </svg>
+                Review my moves
+              </button>
+            </div>
+          </section>
+
+          <section class="findings" id="findings" hidden></section>
+        </aside>
+      </main>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
