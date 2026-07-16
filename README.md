@@ -120,3 +120,7 @@ mine" is the one question a player cannot afford to get wrong.
 persisting difficulty between sessions; an adaptive tier; move-list notation in
 the review, which currently locates a move by lighting the board rather than
 naming a square.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
