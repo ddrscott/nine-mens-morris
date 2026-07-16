@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "9mm-ljs-app",
+  "compatibility_date": "2026-07-01",
+
+  // Assets-only: there is no server side. The engine is a browser Web Worker
+  // bundled into dist/ by Vite, not a Cloudflare Worker.
+  "assets": {
+    "directory": "./dist",
+    // One page. A bad path should 404, not silently serve the game.
+    "not_found_handling": "none"
+  },
+
+  "routes": [
+    {
+      "pattern": "9mm.ljs.app",
+      "custom_domain": true
+    }
+  ],
+
+  "observability": {
+    "enabled": true
+  }
+}

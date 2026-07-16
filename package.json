@@ -11,12 +11,14 @@
     "test:watch": "vitest",
     "calibrate": "tsx scripts/calibrate.mts",
     "tournament": "tsx scripts/tournament.mts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "deploy": "npm run build && wrangler deploy"
   },
   "devDependencies": {
+    "tsx": "^4.19.2",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",
     "vitest": "^4.1.10",
-    "tsx": "^4.19.2"
+    "wrangler": "^4.111.0"
   }
 }
