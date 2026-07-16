@@ -9,6 +9,16 @@
       content="Nine men's morris against five grades of engine, from one that misses your mills to one that cannot lose."
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Privacy-friendly analytics, self-hosted. A single-screen game has
+         nothing to scroll, so the interesting signal is game-shaped: which
+         difficulty people pick and whether they beat the engine. Those go out
+         as custom events from main.ts via the queue stub below. -->
+    <script defer data-domain="9mm.ljs.app" src="https://plausible.ljs.app/js/script.tagged-events.js"></script>
+    <script>
+      window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

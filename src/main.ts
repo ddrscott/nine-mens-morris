@@ -15,6 +15,14 @@ type Ask = Omit<MoveRequest, 'id'> | Omit<ReviewRequest, 'id'>;
 const HUMAN: Player = X;
 const ENGINE: Player = O;
 
+/** Fire a Plausible custom event. No-op if the script is blocked or absent, so
+ *  analytics never affects play. Props stay to bounded, non-identifying values
+ *  (difficulty, outcome) — never anything about the person. */
+type Plausible = (event: string, opts?: { props?: Record<string, string> }) => void;
+function track(event: string, props?: Record<string, string>): void {
+  (window as unknown as { plausible?: Plausible }).plausible?.(event, props ? { props } : undefined);
+}
+
 type Phase =
   | { kind: 'idle' }
   | { kind: 'holding'; from: number }
@@ -103,7 +111,15 @@ function commit(move: Move): void {
   phase = game.result ? { kind: 'over' } : { kind: 'idle' };
   render();
   if (!game.result && game.turn === ENGINE) void engineTurn();
-  if (game.result) $('review').hidden = false;
+  if (game.result) {
+    $('review').hidden = false;
+    // Fires exactly once: this is the move that produced the result.
+    const outcome =
+      game.result.kind === 'draw' ? 'draw'
+      : game.result.winner === HUMAN ? 'win'
+      : 'loss';
+    track('Game Ended', { difficulty: tier.name, result: outcome });
+  }
 }
 
 async function engineTurn(): Promise<void> {
@@ -329,6 +345,7 @@ async function runReview(): Promise<void> {
   btn.disabled = true;
   btn.textContent = 'Reading the game…';
 
+  track('Review Used', { difficulty: tier.name });
   const res = await ask({ kind: 'review', timeline, human: HUMAN });
   btn.disabled = false;
   btn.textContent = 'Review my moves';
@@ -402,6 +419,7 @@ for (const t of TIERS) {
 select.value = tier.id;
 select.addEventListener('change', () => {
   tier = tierById(select.value);
+  track('Difficulty', { tier: tier.name });
   reset();
 });
 
