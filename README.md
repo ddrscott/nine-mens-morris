@@ -1,8 +1,37 @@
 # Nine Men's Morris
 
-A browser Nine Men's Morris against five grades of engine, from one that misses
-your mills to one that cannot lose. Vanilla TypeScript, no framework, engine in
-a Web Worker.
+A place to **learn nine men's morris and practice it** — a game older than chess
+that most people have never played — against an opponent that scales from one
+that misses your mills to one that cannot lose. Play it at
+**[9mm.ljs.app](https://9mm.ljs.app)**.
+
+![The board mid-game: cyan and amber men, with dashed rings marking mills one move from closing](docs/board.png)
+
+**The board teaches while you play.** Two of your men on a line with the third
+point open is a mill one move from closing — and the board says so: your
+near-mills glow cyan, the opponent's glow amber, so you read a threat before it
+lands. In the shot above there's a cyan opening at the bottom-left corner and
+two amber threats waiting to be answered. Pick up a man and every square it can
+reach lights up; the phase and flying rules are shown, never recited.
+
+**Five opponents, and they differ in what they _understand_, not just how deep
+they look.** That is what makes the low rungs feel like beginners rather than
+broken bots — they play sensible-looking moves and miss the point, which is what
+you can actually learn against.
+
+- **Learner** — counts men; won't see your mill coming
+- **Casual** — takes mills it's handed; doesn't build toward them
+- **Club** — reads threats and space; punishes loose play
+- **Expert** — sees everything, six moves out; you'll earn your draw
+- **Impossible** — thinks for a second and doesn't lose
+
+**Lose, and find out why.** Review reads the whole game back with a strong
+engine and flags the moves that cost you — how much each gave up, in men — so a
+loss turns into the next thing to work on.
+
+![The post-game review flagging a move that cost 1.3 men, with a stronger line available](docs/review.png)
+
+## Run it
 
 ```sh
 npm install
